@@ -11,6 +11,9 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-markdown": "latest"
+    "react-markdown": "latest",
+    "tailwindcss": "latest",
+    "postcss": "latest",
+    "autoprefixer": "latest"
   }
 }
