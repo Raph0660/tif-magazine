@@ -1,23 +1,12 @@
 export default function MentionsLegales() {
   return (
-    <main className="max-w-3xl mx-auto py-20 px-6 font-serif text-stone-800">
-      <h1 className="text-4xl font-bold mb-10 text-stone-900">Mentions Légales</h1>
-      <section className="space-y-6 leading-relaxed">
-        <div>
-          <h2 className="text-xl font-bold mb-2">1. Éditeur du site</h2>
-          <p>Le site "Tif & ses Recettes en Cuisine" est édité par Tif Cooking Lab.</p>
-          <p>Contact : contact -at- tif-recettes.com</p>
-        </div>
-        <div>
-          <h2 className="text-xl font-bold mb-2">2. Hébergement</h2>
-          <p>Siège Sociale : 66 Allée des Tulipes, Clermont 63100, France.</p>
-        </div>
-        <div>
-          <h2 className="text-xl font-bold mb-2">3. Propriété intellectuelle</h2>
-          <p>L'ensemble du contenu (textes, images) est généré via intelligence artificielle et reste la propriété de l'éditeur.</p>
-        </div>
-      </section>
-      <a href="/" className="mt-10 inline-block text-stone-500 hover:underline">← Retour à l'accueil</a>
+    <main className="max-w-2xl mx-auto py-20 px-6 font-serif">
+      <h1 className="text-3xl font-bold mb-10">Mentions Légales</h1>
+      <div className="space-y-8 text-stone-700">
+        <p><strong>Éditeur :</strong> Tif Media Lab, 12 chemin des gorges, 69570 dardilly, France </p>
+        <p><strong>Hébergement :</strong> Vercel Inc., Walnut, CA 91789, USA.</p>
+        <p><strong>Propriété :</strong> Le contenu de ce site est la propriété exclusive de Tif Media Lab.</p>
+      </div>
     </main>
   );
 }
