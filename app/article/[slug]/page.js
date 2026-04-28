@@ -1,4 +1,6 @@
 import ReactMarkdown from 'react-markdown';
+import Link from 'next/link';
+import { Clock, ArrowLeft } from 'lucide-react';
 
 async function getArticles() {
   const SHEET_ID = '1AY7skQKYPST-CczQFQTtu99HUuIjxFHypETfiqDIs1Q';
@@ -9,28 +11,56 @@ async function getArticles() {
   return rows.map(row => {
     const columns = row.split('","').map(col => col.replace(/"/g, ''));
     const theme = columns[0] || "";
+    const content = columns[1] || "";
     return {
-      theme: theme,
-      text: columns[1] || "",
+      theme,
+      text: content,
+      readTime: Math.max(1, Math.ceil(content.split(/\s+/).length / 200)),
       slug: theme.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '')
     };
   });
 }
 
-// ATTENTION : On ajoute "await params" ici
 export default async function ArticlePage({ params }) {
   const { slug } = await params; 
   const articles = await getArticles();
   const article = articles.find(a => a.slug === slug);
 
-  if (!article) return <div className="p-20 text-center">Article non trouvé</div>;
+  if (!article) return <div className="p-20 text-center font-serif">Édition introuvable</div>;
 
   return (
-    <main className="max-w-3xl mx-auto py-20 px-6 font-serif">
-      <a href="/" className="text-stone-500 hover:text-stone-800 mb-10 inline-block">← Retour</a>
-      <article className="prose prose-stone lg:prose-xl">
-        <h1 className="text-5xl font-bold mb-10 text-stone-900">{article.theme}</h1>
-        <div className="text-stone-700 leading-relaxed">
+    <main className="min-h-screen bg-[#fdfbf7] text-[#1c1917] pb-24">
+      <nav className="py-6 px-6 border-b border-stone-200 sticky top-0 bg-[#fdfbf7]/90 backdrop-blur-sm z-50">
+        <div className="max-w-4xl mx-auto flex justify-between items-center">
+          <Link href="/" className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold">
+            <ArrowLeft className="w-3 h-3" /> Retour
+          </Link>
+          <span className="font-serif tracking-widest text-sm">TIF & GOURMANDISES</span>
+        </div>
+      </nav>
+
+      <article className="max-w-3xl mx-auto px-6 mt-16 md:mt-24">
+        <header className="mb-16 text-center">
+          <div className="flex items-center justify-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#a48437] mb-8">
+            <span>Gastronomie</span>
+            <span className="w-1 h-1 rounded-full bg-stone-300"></span>
+            <span className="text-stone-500 font-normal flex items-center gap-1">
+              <Clock className="w-3 h-3"/> {article.readTime} min de lecture
+            </span>
+          </div>
+          <h1 className="font-serif text-4xl md:text-6xl mb-12 leading-tight uppercase tracking-tight">
+            {article.theme}
+          </h1>
+          <div className="w-24 h-px bg-stone-300 mx-auto"></div>
+        </header>
+
+        {/* CONTENU AVEC STYLE VOGUE */}
+        <div className="font-light leading-relaxed text-[18px] md:text-[20px] text-stone-800 space-y-8 
+          [&>p:first-of-type::first-letter]:float-left [&>p:first-of-type::first-letter]:text-7xl [&>p:first-of-type::first-letter]:pr-3 [&>p:first-of-type::first-letter]:font-serif [&>p:first-of-type::first-letter]:text-[#7f1d1d]
+          [&>blockquote]:text-center [&>blockquote]:italic [&>blockquote]:text-2xl [&>blockquote]:py-10 [&>blockquote]:border-y [&>blockquote]:border-stone-200 [&>blockquote]:my-12 [&>blockquote]:font-serif
+          [&>h2]:text-3xl [&>h2]:font-serif [&>h2]:mt-16
+          [&>ul]:list-disc [&>ul]:pl-6"
+        >
           <ReactMarkdown>{article.text}</ReactMarkdown>
         </div>
       </article>
