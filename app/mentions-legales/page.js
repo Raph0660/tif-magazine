@@ -6,7 +6,7 @@ export default function MentionsLegales() {
         <div>
           <h2 className="text-xl font-bold mb-2">1. Éditeur du site</h2>
           <p>Le site "Tif & ses Recettes en Cuisine" est édité par Tif Cooking Lab.</p>
-          <p>Contact : contact@tif-recettes.com</p>
+          <p>Contact : contact -at- tif-recettes.com</p>
         </div>
         <div>
           <h2 className="text-xl font-bold mb-2">2. Hébergement</h2>
