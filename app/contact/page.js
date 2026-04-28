@@ -5,7 +5,7 @@ export default function Contact() {
       <p className="text-stone-600 mb-10 italic">Une question ? Une suggestion de recette ?</p>
       <div className="bg-stone-50 border border-stone-200 p-10 rounded-lg">
         <p className="text-xl mb-4">Envoyez un message à :</p>
-        <a href="mailto:contact@tif-recettes.com" className="text-2xl font-bold text-stone-900 hover:text-stone-700 underline">
+        <a href="mailto:contact -at- tif-recettes.com" className="text-2xl font-bold text-stone-900 hover:text-stone-700 underline">
           ton-email@gmail.com
         </a>
       </div>
