@@ -17,8 +17,9 @@ async function getArticles() {
   });
 }
 
+// ATTENTION : On ajoute "await params" ici
 export default async function ArticlePage({ params }) {
-  const { slug } = params;
+  const { slug } = await params; 
   const articles = await getArticles();
   const article = articles.find(a => a.slug === slug);
 
@@ -29,7 +30,9 @@ export default async function ArticlePage({ params }) {
       <a href="/" className="text-stone-500 hover:text-stone-800 mb-10 inline-block">← Retour</a>
       <article className="prose prose-stone lg:prose-xl">
         <h1 className="text-5xl font-bold mb-10 text-stone-900">{article.theme}</h1>
-        <ReactMarkdown>{article.text}</ReactMarkdown>
+        <div className="text-stone-700 leading-relaxed">
+          <ReactMarkdown>{article.text}</ReactMarkdown>
+        </div>
       </article>
     </main>
   );
